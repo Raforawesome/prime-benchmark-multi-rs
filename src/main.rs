@@ -1,4 +1,6 @@
-use std::time::{ Duration, Instant };
+use std::time::{ Instant };
+use std::io;
+use std::env;
 
 fn main() {
 	let start = Instant::now();
@@ -9,6 +11,16 @@ fn main() {
 	}
 	let delta_time = start.elapsed();
 	println!("Time elapsed: {:?}", delta_time);
+
+
+	if env::consts::OS == "windows" {
+		let mut tmp: String = String::from("");
+		println!("{}", "Press any key to exit the program...");
+		let tmp2 = io::stdin().read_line(&mut tmp);
+
+		std::mem::drop(tmp);
+		std::mem::drop(tmp2);
+	}
 }
 
 fn is_prime(num: f64) -> bool {
