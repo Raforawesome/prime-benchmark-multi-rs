@@ -32,6 +32,14 @@ fn main() {
 	println!("Found {} primes between {} and {}", prime_count, 1, max);
 	let delta_time = start.elapsed();
 	println!("Time elapsed: {:?}", delta_time);
+	
+	if env::consts::OS == "windows" {
+		let mut tmp: String = "".to_string();
+		println!("Press enter to exit program...");
+		let tmp2 = io::stdin().read_line(&mut tmp);
+		std::mem::drop(tmp);
+		std::mem::drop(tmp2);
+	}
 }
 
 fn is_prime(num: f64) -> bool {
